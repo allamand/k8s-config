@@ -1,0 +1,55 @@
+# Adapt the nodeSelector according to your configuration
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: My2048App
+  name: '2048'
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 200
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: My2048App
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: My2048App
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: public.ecr.aws/u0b4h6b4/docker-2048
+          imagePullPolicy: IfNotPresent
+          name: '2048'
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1
+              memory: 50Mi
+            requests:
+              cpu: 1
+              memory: 50Mi
+          securityContext:
+            readOnlyRootFilesystem: true
+            privileged: false
+            allowPrivilegeEscalation: false
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      #nodeSelector:
+      #  topology.kubernetes.io/zone: eu-west-1c
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      #securityContext:
+      #  runAsUser: 1000
+      shareProcessNamespace: false
+      terminationGracePeriodSeconds: 30
