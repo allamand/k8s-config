@@ -5,9 +5,12 @@ metadata:
   labels:
     app: My2048App
   name: '2048'
+  annotations:
+    # do not apply this manifest on the cluster
+    flux.weave.works/ignore: 'true'
 spec:
   progressDeadlineSeconds: 600
-  replicas: 200
+  replicas: 0
   revisionHistoryLimit: 10
   selector:
     matchLabels:
