@@ -576,7 +576,7 @@ spec:
     kind: Deployment
     name: backend-v1
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 50
   targetCPUUtilizationPercentage: 50
 ---
 apiVersion: autoscaling/v1
@@ -590,7 +590,7 @@ spec:
     kind: Deployment
     name: backend-v2
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 49
   targetCPUUtilizationPercentage: 50
 ---
 apiVersion: autoscaling/v1
@@ -604,5 +604,5 @@ spec:
     kind: Deployment
     name: backend-v3
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 50
   targetCPUUtilizationPercentage: 50
