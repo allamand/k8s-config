@@ -5,13 +5,13 @@ metadata:
   labels:
     app: My2048App
   name: '2048'
-  namespace: 2048
+  namespace: '2048'
   annotations:
     # do not apply this manifest on the cluster
     flux.weave.works/ignore: 'true'
 spec:
   progressDeadlineSeconds: 600
-  replicas: 2000
+  replicas: 1000
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -28,6 +28,10 @@ spec:
         app: My2048App
     spec:
       automountServiceAccountToken: false
+      tolerations:
+      - key: "karpenter.com/taint"
+        operator: "Exists"
+        effect: "NoSchedule"
       containers:
         - image: public.ecr.aws/u0b4h6b4/docker-2048
           imagePullPolicy: IfNotPresent
