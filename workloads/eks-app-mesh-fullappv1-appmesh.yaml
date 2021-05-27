@@ -258,6 +258,8 @@ spec:
         version: v1
     spec:
       serviceAccountName: demo-frontend
+      nodeSelector:
+        node.k8s.aws/capacity-type: 'spot'
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -368,6 +370,8 @@ spec:
         version: v1
     spec:
       serviceAccountName: backend
+      nodeSelector:
+        node.k8s.aws/capacity-type: 'spot'
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -411,6 +415,8 @@ spec:
         version: v2
     spec:
       serviceAccountName: backend
+      nodeSelector:
+        node.k8s.aws/capacity-type: 'spot'
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -454,6 +460,8 @@ spec:
         version: v3
     spec:
       serviceAccountName: backend
+      nodeSelector:
+        node.k8s.aws/capacity-type: 'spot'
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -510,6 +518,8 @@ spec:
         app: ingress-gateway
     spec:
       serviceAccountName: ingress-gateway
+      nodeSelector:
+        node.k8s.aws/capacity-type: 'spot'
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
