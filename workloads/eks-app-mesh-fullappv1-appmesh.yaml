@@ -258,6 +258,10 @@ spec:
         version: v1
     spec:
       serviceAccountName: demo-frontend
+      tolerations:
+        - key: 'karpenter.com/taint'
+          operator: 'Exists'
+          effect: 'NoSchedule'
       containers:
         - name: frontend
           image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/frontendv1
@@ -364,6 +368,10 @@ spec:
         version: v1
     spec:
       serviceAccountName: backend
+      tolerations:
+        - key: 'karpenter.com/taint'
+          operator: 'Exists'
+          effect: 'NoSchedule'
       containers:
         - name: backendv1
           image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/backendv1
@@ -403,6 +411,10 @@ spec:
         version: v2
     spec:
       serviceAccountName: backend
+      tolerations:
+        - key: 'karpenter.com/taint'
+          operator: 'Exists'
+          effect: 'NoSchedule'
       containers:
         - name: backendv2
           image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/backendv2
@@ -442,6 +454,10 @@ spec:
         version: v3
     spec:
       serviceAccountName: backend
+      tolerations:
+        - key: 'karpenter.com/taint'
+          operator: 'Exists'
+          effect: 'NoSchedule'
       containers:
         - name: backendv3
           image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/backendv3
@@ -494,6 +510,10 @@ spec:
         app: ingress-gateway
     spec:
       serviceAccountName: ingress-gateway
+      tolerations:
+        - key: 'karpenter.com/taint'
+          operator: 'Exists'
+          effect: 'NoSchedule'
       containers:
         - name: envoy
           image: 840364872350.dkr.ecr.eu-west-1.amazonaws.com/aws-appmesh-envoy:v1.12.5.0-prod
