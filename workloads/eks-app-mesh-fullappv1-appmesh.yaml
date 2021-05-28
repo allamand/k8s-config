@@ -240,7 +240,7 @@ metadata:
     app: frontend-v1
     version: v1
 spec:
-  replicas: 1
+  # replicas: 1  <-- configured by HPA
   selector:
     matchLabels:
       app: frontend-v1
@@ -397,7 +397,7 @@ metadata:
     app: backend
     version: v2
 spec:
-  replicas: 1
+  #replicas: 1 <-- configured by HPA
   selector:
     matchLabels:
       app: backend-v2
@@ -442,7 +442,7 @@ metadata:
     app: backend
     version: v3
 spec:
-  replicas: 1
+  #replicas: 1  <-- configured by HPA
   selector:
     matchLabels:
       app: backend-v3
@@ -502,7 +502,7 @@ metadata:
   name: ingress-gateway
   namespace: my-apps
 spec:
-  replicas: 3
+  #replicas: 3  <-- configured by HPA
   selector:
     matchLabels:
       app: ingress-gateway

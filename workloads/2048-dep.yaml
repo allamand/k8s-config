@@ -29,11 +29,11 @@ spec:
     spec:
       automountServiceAccountToken: false
       tolerations:
-      - key: "karpenter.com/taint"
-        operator: "Exists"
-        effect: "NoSchedule"
+        - key: 'karpenter.com/taint'
+          operator: 'Exists'
+          effect: 'NoSchedule'
       containers:
-        - image: public.ecr.aws/u0b4h6b4/docker-2048
+        - image: public.ecr.aws/seb-demo/docker-2048:latest
           imagePullPolicy: IfNotPresent
           name: '2048'
           ports:
