@@ -8,7 +8,7 @@ metadata:
   namespace: '2048'
   annotations:
     # do not apply this manifest on the cluster
-    flux.weave.works/ignore: 'true'
+    flux.weave.works/ignore: 'false'
 spec:
   progressDeadlineSeconds: 600
   replicas: 1000
