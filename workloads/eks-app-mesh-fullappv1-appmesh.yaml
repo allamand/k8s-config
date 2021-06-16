@@ -259,7 +259,8 @@ spec:
     spec:
       serviceAccountName: demo-frontend
       nodeSelector:
-        node.k8s.aws/capacity-type: 'spot'
+        #node.k8s.aws/capacity-type: 'spot' # Karpenter
+        eks.amazonaws.com/capacityType: 'SPOT' # cluster-autoscaler
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -371,7 +372,8 @@ spec:
     spec:
       serviceAccountName: backend
       nodeSelector:
-        node.k8s.aws/capacity-type: 'spot'
+        #node.k8s.aws/capacity-type: 'spot' # Karpenter
+        eks.amazonaws.com/capacityType: 'SPOT' # cluster-autoscaler
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -416,7 +418,8 @@ spec:
     spec:
       serviceAccountName: backend
       nodeSelector:
-        node.k8s.aws/capacity-type: 'spot'
+        #node.k8s.aws/capacity-type: 'spot' # Karpenter
+        eks.amazonaws.com/capacityType: 'SPOT' # cluster-autoscaler
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -461,7 +464,8 @@ spec:
     spec:
       serviceAccountName: backend
       nodeSelector:
-        node.k8s.aws/capacity-type: 'spot'
+        #node.k8s.aws/capacity-type: 'spot' # Karpenter
+        eks.amazonaws.com/capacityType: 'SPOT' # cluster-autoscaler
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
@@ -519,7 +523,8 @@ spec:
     spec:
       serviceAccountName: ingress-gateway
       nodeSelector:
-        node.k8s.aws/capacity-type: 'spot'
+        #node.k8s.aws/capacity-type: 'spot' # Karpenter
+        eks.amazonaws.com/capacityType: 'SPOT' # cluster-autoscaler
       tolerations:
         - key: 'karpenter.com/taint'
           operator: 'Exists'
