@@ -554,7 +554,7 @@ spec:
     name: ingress-gateway
   minReplicas: 3
   maxReplicas: 100
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 80
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -567,8 +567,8 @@ spec:
     kind: Deployment
     name: frontend-v1
   minReplicas: 1
-  maxReplicas: 200
-  targetCPUUtilizationPercentage: 50
+  maxReplicas: 50
+  targetCPUUtilizationPercentage: 80
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -582,7 +582,7 @@ spec:
     name: backend-v1
   minReplicas: 1
   maxReplicas: 50
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 80
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -595,8 +595,8 @@ spec:
     kind: Deployment
     name: backend-v2
   minReplicas: 1
-  maxReplicas: 49
-  targetCPUUtilizationPercentage: 50
+  maxReplicas: 50
+  targetCPUUtilizationPercentage: 80
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -610,4 +610,4 @@ spec:
     name: backend-v3
   minReplicas: 1
   maxReplicas: 50
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 80
