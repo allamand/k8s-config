@@ -566,7 +566,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: frontend-v1
-  minReplicas: 0
+  minReplicas: 1
   maxReplicas: 50
   targetCPUUtilizationPercentage: 60
 ---
@@ -580,7 +580,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: backend-v1
-  minReplicas: 0
+  minReplicas: 1
   maxReplicas: 50
   targetCPUUtilizationPercentage: 60
 ---
@@ -594,7 +594,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: backend-v2
-  minReplicas: 0
+  minReplicas: 1
   maxReplicas: 50
   targetCPUUtilizationPercentage: 60
 ---
@@ -608,6 +608,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: backend-v3
-  minReplicas: 0
+  minReplicas: 1
   maxReplicas: 50
   targetCPUUtilizationPercentage: 60
