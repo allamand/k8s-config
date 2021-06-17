@@ -608,6 +608,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: backend-v3
-  minReplicas: 1
+  minReplicas: 0
   maxReplicas: 50
   targetCPUUtilizationPercentage: 80
