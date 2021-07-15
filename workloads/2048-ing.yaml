@@ -27,10 +27,10 @@ spec:
     - host: 2048.eks.demo3.allamand.com
       http:
         paths:
-          - path: /*
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: service-2048
-                port: 
+                port:
                   number: 80
