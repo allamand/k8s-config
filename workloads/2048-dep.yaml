@@ -30,7 +30,7 @@ spec:
       automountServiceAccountToken: false
       affinity: 
         nodeAffinity: 
-          preferredDuringSchedulingIgnoredDuringExecution: 
+          requiredDuringSchedulingIgnoredDuringExecution: 
           - weight: 1 
             preference: 
               matchExpressions: 
@@ -38,13 +38,6 @@ spec:
                 operator: In 
                 values: 
                 - SPOT 
-          requiredDuringSchedulingIgnoredDuringExecution: 
-            nodeSelectorTerms: 
-            - matchExpressions: 
-              - key: intent 
-                operator: In 
-                values: 
-                - apps 
       tolerations:
         # - key: 'karpenter.com/taint'
         #   operator: 'Exists'
