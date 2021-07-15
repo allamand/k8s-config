@@ -28,10 +28,32 @@ spec:
         app: My2048App
     spec:
       automountServiceAccountToken: false
+      affinity: 
+        nodeAffinity: 
+          preferredDuringSchedulingIgnoredDuringExecution: 
+          - weight: 1 
+            preference: 
+              matchExpressions: 
+              - key: eks.amazonaws.com/capacityType 
+                operator: In 
+                values: 
+                - SPOT 
+          requiredDuringSchedulingIgnoredDuringExecution: 
+            nodeSelectorTerms: 
+            - matchExpressions: 
+              - key: intent 
+                operator: In 
+                values: 
+                - apps 
       tolerations:
-        - key: 'karpenter.com/taint'
-          operator: 'Exists'
-          effect: 'NoSchedule'
+        # - key: 'karpenter.com/taint'
+        #   operator: 'Exists'
+        #   effect: 'NoSchedule'
+        - key: "spotInstance" 
+          operator: "Equal" 
+          value: "true" 
+          effect: "PreferNoSchedule" 
+
       containers:
         - image: public.ecr.aws/seb-demo/docker-2048:latest
           imagePullPolicy: IfNotPresent
