@@ -31,9 +31,8 @@ spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
+            nodeSelectorTerms:
+              - matchExpressions:
                   - key: eks.amazonaws.com/capacityType
                     operator: In
                     values:
