@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: '2048'
-  name: "2048"
+  name: 'service-2048'
 spec:
   ports:
     - port: 80
@@ -11,13 +11,13 @@ spec:
       protocol: TCP
   type: NodePort
   selector:
-    app.kubernetes.io/name: "2048"
+    app.kubernetes.io/name: '2048'
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  namespace: "2048"
-  name: "2048"
+  namespace: '2048'
+  name: '2048'
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -28,5 +28,5 @@ spec:
         paths:
           - path: /*
             backend:
-              serviceName: "2048"
+              serviceName: 'service-2048'
               servicePort: 80
