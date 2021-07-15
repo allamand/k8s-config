@@ -13,7 +13,7 @@ spec:
   selector:
     app.kubernetes.io/name: '2048'
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: '2048'
