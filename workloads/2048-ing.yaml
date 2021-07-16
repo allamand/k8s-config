@@ -11,7 +11,7 @@ spec:
       protocol: TCP
   type: NodePort
   selector:
-    app.kubernetes.io/name: '2048'
+    app: My2048App
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
