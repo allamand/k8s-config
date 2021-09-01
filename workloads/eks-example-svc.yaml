@@ -5,6 +5,10 @@ metadata:
   namespace: eks-example
   labels:
     app: eks-example
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-type: 'external' # important for not using the "in-tree" code
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'ip'
 spec:
   type: LoadBalancer
   ports:
