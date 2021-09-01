@@ -1,3 +1,4 @@
+#aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:eu-west-1:382076407153:targetgroup/k8s-eksexamp-eksexamp-8913b0ff27/52b10561294b2b21 --query 'TargetHealthDescriptions[].[Target.Id,TargetHealth.State]' --output table
 apiVersion: v1
 kind: Service
 metadata:
@@ -9,6 +10,9 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     service.beta.kubernetes.io/aws-load-balancer-type: 'external' # important for not using the "in-tree" code
     service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'ip'
+    #service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'ip'
+    # do not apply this manifest on the cluster
+    flux.weave.works/ignore: "true"
 spec:
   type: LoadBalancer
   ports:
