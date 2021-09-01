@@ -14,3 +14,8 @@ spec:
       name: http
   selector:
     app: eks-example
+  #https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate
+  #https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/deploy/pod_readiness_gate/
+  #For readiness gate configuration to be injected to the pod spec, you need to apply the label elbv2.k8s.aws/pod-readiness-gate-inject: enabled to the pod namespace
+  #readinessGates:
+  #  - conditionType: "www.example.com/feature-1"

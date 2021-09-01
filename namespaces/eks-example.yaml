@@ -1,6 +1,11 @@
 apiVersion: v1
 kind: Namespace
+annotations:
+  service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+  service.beta.kubernetes.io/aws-load-balancer-type: "external" # important for not using the "in-tree" code
+  service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
 metadata:
   labels:
     name: eks-example
+    elbv2.k8s.aws/pod-readiness-gate-inject: enabled
   name: eks-example
