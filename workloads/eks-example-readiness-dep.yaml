@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eks-example
-  namespace: eks-example
+  name: eks-example-readiness
+  namespace: eks-example-readiness
   labels:
-    app: eks-example
+    app: eks-example-readiness
   annotations:
     # Container Image Automated Updates
     flux.weave.works/automated: 'true'
@@ -15,14 +15,14 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: eks-example
+      app: eks-example-readiness
   template:
     metadata:
       labels:
-        app: eks-example
+        app: eks-example-readiness
     spec:
       containers:
-        - name: eks-example
+        - name: eks-example-readiness
           image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:a213b841
           imagePullPolicy: IfNotPresent
           ports:

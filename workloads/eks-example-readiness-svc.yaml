@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eks-example
-  namespace: eks-example
+  name: eks-example-readiness
+  namespace: eks-example-readiness
   labels:
-    app: eks-example
+    app: eks-example-readiness
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: eks-example.eks.demo3.allamand.com
+    external-dns.alpha.kubernetes.io/hostname: eks-example-readiness.eks.demo3.allamand.com
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     service.beta.kubernetes.io/aws-load-balancer-type: 'external' # important for not using the "in-tree" code
     #service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'instance'
@@ -22,7 +22,7 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: eks-example
+    app: eks-example-readiness
   #https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate
   #https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/deploy/pod_readiness_gate/
   #For readiness gate configuration to be injected to the pod spec, you need to apply the label elbv2.k8s.aws/pod-readiness-gate-inject: enabled to the pod namespace
