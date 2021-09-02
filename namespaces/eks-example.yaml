@@ -3,5 +3,5 @@ kind: Namespace
 metadata:
   labels:
     name: eks-example
-    elbv2.k8s.aws/pod-readiness-gate-inject: enabled
+    #elbv2.k8s.aws/pod-readiness-gate-inject: enabled
   name: eks-example
