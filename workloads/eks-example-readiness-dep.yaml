@@ -12,7 +12,16 @@ metadata:
     # do not apply this manifest on the cluster
     flux.weave.works/ignore: 'true'
 spec:
-  replicas: 3
+  replicas: 1
+  #
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 40%
+      maxUnavailable: 0
+  revisionHistoryLimit: 10
+  #
   selector:
     matchLabels:
       app: eks-example-readiness
@@ -37,4 +46,13 @@ spec:
             httpGet:
               path: /
               port: http
-      terminationGracePeriodSeconds: 120
+          lifecycle:
+            preStop:
+              exec:
+                command: ['sleep', '290']
+      terminationGracePeriodSeconds: 300
+      #https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate
+      #https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/deploy/pod_readiness_gate/
+      #For readiness gate configuration to be injected to the pod spec, you need to apply the label elbv2.k8s.aws/pod-readiness-gate-inject: enabled to the pod namespace
+      #readinessGates:
+      #  - conditionType: "www.example.com/feature-1"

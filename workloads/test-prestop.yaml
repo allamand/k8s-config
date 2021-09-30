@@ -1,0 +1,88 @@
+#curl -v test-prestop.eks.demo3.allamand.com/slow\?sleep=3m
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-prestop
+  namespace: eks-example-readiness
+  labels:
+    app: test-prestop
+  annotations:
+    # Container Image Automated Updates
+    #flux.weave.works/automated: 'true'
+    # do not apply this manifest on the cluster
+    flux.weave.works/ignore: 'true'
+spec:
+  replicas: 3
+  #
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 40%
+      maxUnavailable: 0
+  revisionHistoryLimit: 10
+  #
+  selector:
+    matchLabels:
+      app: test-prestop
+  #strategy:
+  #  type: Recreate
+  template:
+    metadata:
+      labels:
+        app: test-prestop
+    spec:
+      terminationGracePeriodSeconds: 20
+      containers:
+        - name: test
+          image: allamand/http-sleep
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          lifecycle:
+            preStop:
+              exec:
+                command: ['sleep', '15']
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+---
+#aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:eu-west-1:382076407153:targetgroup/k8s-eksexamp-eksexamp-d0255f8e9f/1c5ff63954cfc9fd --query 'TargetHealthDescriptions[].[Target.Id,TargetHealth.State]' --output table
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-prestop
+  namespace: eks-example-readiness
+  labels:
+    app: test-prestop
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: test-prestop.eks.demo3.allamand.com
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-type: 'external' # important for not using the "in-tree" code
+    #service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'instaance'
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'ip'
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: '5'
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: '10' # Must be one of the following values '[10, 30]'
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: '3'
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: '3'
+    #https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#target-group-attributes
+    service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: deregistration_delay.timeout_seconds=15,stickiness.enabled=false,deregistration_delay.connection_termination.enabled=true # default is 300
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: 'Environnement=Dev,Creator=AWS ALB Controller,service=test-prestop,component=test-prestop'
+
+    # do not apply this manifest on the cluster
+    flux.weave.works/ignore: 'true'
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: test-prestop
