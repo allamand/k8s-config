@@ -71,7 +71,7 @@ metadata:
     name: carts
   namespace: sockshop
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       name: carts
@@ -219,12 +219,12 @@ spec:
     spec:
       containers:
         - name: catalogue
-          #image: weaveworksdemos/catalogue:0.3.5
+          image: weaveworksdemos/catalogue:0.3.5
           #introduce bug in SQL to detect with Pixie
-          image: gcr.io/pixie-prod/demos/sockshop/catalogue:eksworkshop
-          command: ["/app"]
-          args:
-          - -port=8080
+          #image: gcr.io/pixie-prod/demos/sockshop/catalogue:eksworkshop
+          #command: ["/app"]
+          #args:
+          #- -port=8080
           resources:
             limits:
               cpu: 100m
@@ -718,7 +718,7 @@ metadata:
     name: shipping
   namespace: sockshop
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       name: shipping
