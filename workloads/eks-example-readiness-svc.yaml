@@ -9,6 +9,8 @@ metadata:
     app: eks-example-readiness
   annotations:
     external-dns.alpha.kubernetes.io/hostname: eks-example-readiness.eksworkshop.demo3.allamand.com
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-west-1:382076407153:certificate/5cf31ce9-3c99-42d2-9a76-fe631cecf77f"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"    
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     service.beta.kubernetes.io/aws-load-balancer-type: 'external' # important for not using the "in-tree" code
     #service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'instance'

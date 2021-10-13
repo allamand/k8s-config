@@ -10,7 +10,7 @@ metadata:
     # Container Image Automated Updates
     flux.weave.works/automated: 'true'
     # do not apply this manifest on the cluster
-    flux.weave.works/ignore: 'true'
+    flux.weave.works/ignore: 'false'
 spec:
   replicas: 3
   selector:
@@ -23,7 +23,8 @@ spec:
     spec:
       containers:
         - name: eks-example
-          image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:a213b841
+          #image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:a213b841
+          image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:301a89da
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
