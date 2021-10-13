@@ -8,7 +8,7 @@ metadata:
   labels:
     app: eks-example-readiness
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: eks-example-readiness.eks.demo3.allamand.com
+    external-dns.alpha.kubernetes.io/hostname: eks-example-readiness.eksworkshop.demo3.allamand.com
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     service.beta.kubernetes.io/aws-load-balancer-type: 'external' # important for not using the "in-tree" code
     #service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'instance'
