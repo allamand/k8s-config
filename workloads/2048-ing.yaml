@@ -22,9 +22,11 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-west-1:382076407153:certificate/5cf31ce9-3c99-42d2-9a76-fe631cecf77f"
 spec:
   rules:
-    - host: 2048.eks.demo3.allamand.com
+    - host: 2048.eksworkshop.demo3.allamand.com
       http:
         paths:
           - path: /
