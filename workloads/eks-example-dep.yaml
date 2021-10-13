@@ -22,21 +22,21 @@ spec:
         app: eks-example
     spec:
       containers:
-        - name: eks-example
+      - name: eks-example
           #image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:a213b841
-          image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:79b4c0d3
+        image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:80d27f5d
           #image: 382076407153.dkr.ecr.eu-west-1.amazonaws.com/eks-example:80d27f5d
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-              name: http
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
       terminationGracePeriodSeconds: 120
